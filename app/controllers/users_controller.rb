@@ -4,7 +4,6 @@ class UsersController < ApplicationController
     @users = User.all
     @book = Book.new
     @user = current_user
-
   end
 
   def create
@@ -23,8 +22,6 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
     @books = @user.books
     @book = Book.new
-
-
   end
 
 
@@ -45,9 +42,18 @@ class UsersController < ApplicationController
       flash[:update] = "You have updated user successfully."
     else
       render :edit
-
     end
-
+  end
+  
+  
+  def follows
+    user = User.find(params[:id])
+    @users = user.followers
+  end
+  
+  def followers
+    user = User.find(params[:id])
+    @users = user.followers
   end
 
   private
