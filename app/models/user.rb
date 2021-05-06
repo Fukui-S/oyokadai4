@@ -12,12 +12,12 @@ class User < ApplicationRecord
   attachment :profile_image
   
   # フォローしているユーザとのアソシエイト
-  has_many :active_relationships, class_name: "Relationship", foreign_key: :follower_id
+  has_many :active_relationships, class_name: "Relationship", foreign_key: :following_id
   has_many :followings, through: :active_relationships, source: :follower
   # 
   
   # フォローされているユーザーとのアソシエイト
-  has_many :passive_relationships, class_name: "Rlationship", foreign_key: :follower_id
+  has_many :passive_relationships, class_name: "Relationship", foreign_key: :follower_id
   has_many :followers, through: :passive_relationships, source: :following
   # 
   # ユーザーをフォローする時既にフォローしていないか
